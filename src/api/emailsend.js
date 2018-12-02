@@ -69,3 +69,12 @@ export function updataCompany(query) {
     params: query
   })
 }
+
+// 删除公司
+export function deleteCompany(query) {
+  return request({
+    url: '/v1/companies',
+    method: 'delete',
+    params: query
+  })
+}

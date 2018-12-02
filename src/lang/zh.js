@@ -170,8 +170,20 @@ export default {
     delete: '删除'
   },
   category: {
-    'cat_name': '类别名称',
-    'category': '类别',
-    'id': 'ID'
+    'name': '类别名称',
+    'id': 'ID',
+    'add': '添加',
+    'update': '更新',
+    'create': '创建',
+    'parent_id': '父级',
+    'description': '描述',
+    'order': '排序',
+    'edit': '编辑',
+    'parent_category': '父类'
+  },
+  email: {
+    'id': 'ID',
+    'name': '邮件模板名称',
+    'des': '邮件模板描述'
   }
 }

@@ -88,7 +88,7 @@
           </el-button> -->
           <!-- <el-button v-if="scope.row.status!='draft'" size="mini" @click="handleModifyStatus(scope.row,'draft')">{{ $t('client.draft') }}
           </el-button> -->
-          <el-button v-if="scope.row.status!='deleted'" size="mini" type="danger" @click="handleModifyStatus(scope.row,'deleted')">{{ $t('client.delete') }}
+          <el-button v-if="scope.row.status!='deleted'" size="mini" type="danger" @click="handleDelete(scope.row)">{{ $t('client.delete') }}
           </el-button>
         </template>
       </el-table-column>
@@ -111,11 +111,11 @@
         <!-- 公司所在类别 -->
         <el-form-item :label="$t('category.category')" prop="category">
           <!-- 大类 大类不需要作为查询条件，仅仅是作为级联选择-->
-          <el-select :placeholder="$t('client.pCat')" v-model="addCom.pcat" style="width: 90px" class="filter-item" @change="handlepCat">
+          <el-select :placeholder="$t('client.pCat')" v-model="temp.catid.par_id" style="width: 90px" class="filter-item" @change="handlepCat">
             <el-option v-for="item in pCats" :key="item.id" :label="item.cat_name" :value="item.id"/>
           </el-select>
           <!-- 小类 -->
-          <el-select v-model="temp.id" :placeholder="$t('client.cat')" clearable class="filter-item" style="width: 130px">
+          <el-select v-model="temp.cat_id" :placeholder="$t('client.cat')" clearable class="filter-item" style="width: 130px">
             <el-option v-for="item in cats" :key="item.id" :label="item.cat_name" :value="item.id"/>
           </el-select>
         </el-form-item>
@@ -141,7 +141,7 @@
 </template>
 
 <script>
-import { companies, cats, countryList, createCompany, updataCompany } from '@/api/emailsend'
+import { companies, cats, countryList, createCompany, updataCompany, deleteCompany } from '@/api/emailsend'
 import waves from '@/directive/waves' // 导入vue指令
 
 export default {
@@ -182,7 +182,8 @@ export default {
         id: undefined,
         name: undefined,
         country: undefined,
-        cat_id: undefined
+        cat_id: undefined,
+        catid: {}
       },
       addCom: {
         pcat: undefined
@@ -245,10 +246,30 @@ export default {
     },
     // 新增公司
     handleCreate() {
+      this.resetTemp()
       this.dialogStatus = 'create'
       this.dialogFormVisible = true
       this.$nextTick(() => {
         this.$refs['dataForm'].clearValidate()
+      })
+    },
+    // 删除公司
+    handleDelete(row) {
+      row._method = 'delete'
+      deleteCompany(row).then(() => {
+        for (const v of this.list) {
+          if (v.id === row.id) {
+            const index = this.list.indexOf(v)
+            this.list.splice(index, 1)
+            break
+          }
+        }
+        this.$notify({
+          title: '成功',
+          message: '删除成功',
+          type: 'success',
+          duration: 2000
+        })
       })
     },
     // 导出
@@ -257,6 +278,7 @@ export default {
     // 编辑
     handleUpdate(row) {
       this.temp = Object.assign({}, row) // copy obj
+      this.temp._method = 'put'
       this.dialogStatus = 'update'
       this.dialogFormVisible = true
       this.$nextTick(() => {
@@ -305,7 +327,17 @@ export default {
           })
         }
       })
+    },
+    resetTemp() {
+      this.temp = {
+        id: undefined,
+        name: undefined,
+        country: undefined,
+        cat_id: undefined,
+        catid: {}
+      }
     }
+
   }
 }
 </script>

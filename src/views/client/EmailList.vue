@@ -9,19 +9,19 @@
       style="width: 100%;"
       @sort-change="sortChange">
       <!-- 发件人ID -->
-      <el-table-column :label="$t('client.id')" prop="id" sortable="custom" align="center" width="65">
+      <el-table-column :label="$t('email.id')" prop="id" sortable="custom" align="center" width="65">
         <template slot-scope="scope">
           <span>{{ scope.row.id }}</span>
         </template>
       </el-table-column>
       <!-- 发件人邮箱 -->
-      <el-table-column :label="$t('client.name')" width="150px" prop="name" align="center">
+      <el-table-column :label="$t('email.name')" width="150px" prop="name" align="center">
         <template slot-scope="scope">
           <span>{{ scope.row.name }}</span>
         </template>
       </el-table-column>
       <!-- 描述-->
-      <el-table-column :label="$t('client.country')" prop="des" min-width="100">
+      <el-table-column :label="$t('email.des')" prop="des" min-width="100">
         <template slot-scope="scope">
           <!-- 弹出框修改标题 -->
           <!-- <span class="link-type" @click="handleUpdate(scope.row)">{{ scope.row.title }}</span> -->
@@ -69,9 +69,9 @@
       </el-table-column>
     </el-table>
 
-    <div style = "margin-top:20px">
+    <!-- <div style = "margin-top:20px">
       <tinymce :height= "300" v-model="content"/>
-    </div>
+    </div> -->
     <div class="editor-content" v-html="content"/>
     <!-- <pagination v-show="total>0" :total="total" :page.sync="listQuery.page" :limit.sync="listQuery.limit" @pagination="getList" /> -->
 
@@ -130,10 +130,7 @@ export default {
   components: { Tinymce },
   data() {
     return {
-      content:
-      `<h1 style="text-align: center;">Welcome to the TinyMCE demo!</h1><p style="text-align: center; font-size: 15px;"><img title="TinyMCE Logo" src="//www.tinymce.com/images/glyph-tinymce@2x.png" alt="TinyMCE Logo" width="110" height="97" /><ul>
-        <li>Our <a href="//www.tinymce.com/docs/">documentation</a> is a great resource for learning how to configure TinyMCE.</li><li>Have a specific question? Visit the <a href="https://community.tinymce.com/forum/">Community Forum</a>.</li><li>We also offer enterprise grade support as part of <a href="https://tinymce.com/pricing">TinyMCE premium subscriptions</a>.</li>
-      </ul>`,
+      content: undefined,
       listLoading: true,
       downloadLoading: false,
       list: undefined,
@@ -149,8 +146,8 @@ export default {
     // 获取发件人的清单
     getList() {
       emailTemList().then(response => {
-        // console.log(response)
         this.list = response.data
+        this.content = this.list[0].content
         // Just to simulate the time of the request
         this.listLoading = false
       })
