@@ -170,20 +170,43 @@ export default {
     delete: '删除'
   },
   category: {
-    'name': '类别名称',
-    'id': 'ID',
-    'add': '添加',
-    'update': '更新',
-    'create': '创建',
-    'parent_id': '父级',
-    'description': '描述',
-    'order': '排序',
-    'edit': '编辑',
-    'parent_category': '父类'
+    name: '类别名称',
+    id: 'ID',
+    add: '添加',
+    update: '更新',
+    create: '创建',
+    parent_id: '父级',
+    description: '描述',
+    order: '排序',
+    edit: '编辑',
+    parent_category: '父类'
   },
   email: {
-    'id': 'ID',
-    'name': '邮件模板名称',
-    'des': '邮件模板描述'
+    id: 'ID',
+    name: '邮件模板名称',
+    des: '邮件模板描述'
+  },
+  customer: {
+    id: 'ID',
+    name: '客户名称',
+    parent_catogory: '大类',
+    category: '小类',
+    search: '搜索',
+    add: '添加',
+    import: '导入',
+    export: '导出',
+    country: '国家',
+    actions: '操作',
+    edit: '编辑',
+    delete: '删除',
+    category_info: '类别信息'
+  },
+  emailsender: {
+    id: 'ID',
+    email: '邮箱',
+    description: '描述',
+    add: '添加',
+    actions: '操作',
+    edit: '编辑'
   }
 }

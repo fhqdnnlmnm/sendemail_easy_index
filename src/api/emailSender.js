@@ -1,7 +1,5 @@
 import request from '@/utils/request'
-
-const baseUrl = '/v1/categories'
-
+const baseUrl = '/v1/emailsenders'
 export default{
   index: function(query) {
     return request({
@@ -34,21 +32,8 @@ export default{
   destroy: function(query) {
     return request({
       url: baseUrl + '/' + query.id,
-      method: 'delete'
-    })
-  },
-  getParentList: function() {
-    return request({
-      url: baseUrl + '/getParentList',
-      method: 'get',
-      params: null
-    })
-  },
-  getTreeList: function() {
-    return request({
-      url: baseUrl + '/getTreeList',
-      method: 'get',
-      params: null
+      method: 'delete',
+      params: query
     })
   }
 }

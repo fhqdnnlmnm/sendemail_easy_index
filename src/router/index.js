@@ -75,7 +75,7 @@ export const constantRouterMap = [
   {
     path: '/client',
     component: Layout,
-    redirect: '/client/company-list',
+    redirect: '/client/customer-list',
     name: '客户',
     meta: {
       title: '客户管理',
@@ -83,8 +83,8 @@ export const constantRouterMap = [
     },
     children: [
       {
-        path: 'company-list',
-        component: () => import('@/views/client/CompanyList'),
+        path: 'customer-list',
+        component: () => import('@/views/client/CustomerList'),
         name: '客户列表',
         meta: { title: '客户列表', icon: 'user' }
       },
@@ -96,13 +96,13 @@ export const constantRouterMap = [
       },
       {
         path: 'sender-list',
-        component: () => import('@/views/client/SenderList'),
+        component: () => import('@/views/client/EmailSender'),
         name: '发件人列表',
         meta: { title: '发件人管理', icon: 'user' }
       },
       {
         path: 'email-list',
-        component: () => import('@/views/client/EmailList'),
+        component: () => import('@/views/client/EmailTemplate'),
         name: '邮件模板',
         meta: { title: '邮件模板', icon: 'user' }
       }

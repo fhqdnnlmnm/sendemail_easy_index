@@ -29,42 +29,11 @@
           <span>{{ scope.row.des }}</span>
         </template>
       </el-table-column>
-      <!-- <el-table-column :label="$t('client.author')" width="110px" align="center">
-        <template slot-scope="scope">
-          <span>{{ scope.row.author }}</span>
-        </template>
-      </el-table-column>
-      <el-table-column v-if="showReviewer" :label="$t('client.reviewer')" width="110px" align="center">
-        <template slot-scope="scope">
-          <span style="color:red;">{{ scope.row.reviewer }}</span>
-        </template>
-      </el-table-column>
-      <el-table-column :label="$t('client.importance')" width="80px">
-        <template slot-scope="scope">
-          <svg-icon v-for="n in +scope.row.importance" :key="n" icon-class="star" class="meta-item__icon"/>
-        </template>
-      </el-table-column>
-      <el-table-column :label="$t('client.readings')" align="center" width="95">
-        <template slot-scope="scope">
-          <span v-if="scope.row.pageviews" class="link-type" @click="handleFetchPv(scope.row.pageviews)">{{ scope.row.pageviews }}</span>
-          <span v-else>0</span>
-        </template>
-      </el-table-column>
-      <el-table-column :label="$t('client.status')" class-name="status-col" width="100">
-        <template slot-scope="scope">
-          <el-tag :type="scope.row.status | statusFilter">{{ scope.row.status }}</el-tag>
-        </template>
-      </el-table-column> -->
+
       <!-- 操作 -->
       <el-table-column :label="$t('client.actions')" align="center" width="230" class-name="small-padding fixed-width">
         <template slot-scope="scope">
           <el-button type="primary" size="mini" @click="handleUpdate(scope.row)">{{ $t('client.edit') }}</el-button>
-          <!-- <el-button v-if="scope.row.status!='published'" size="mini" type="success" @click="handleModifyStatus(scope.row,'published')">{{ $t('client.publish') }}
-          </el-button> -->
-          <!-- <el-button v-if="scope.row.status!='draft'" size="mini" @click="handleModifyStatus(scope.row,'draft')">{{ $t('client.draft') }}
-          </el-button> -->
-          <!-- <el-button v-if="scope.row.status!='deleted'" size="mini" type="danger" @click="handleModifyStatus(scope.row,'deleted')">{{ $t('client.delete') }}
-          </el-button> -->
         </template>
       </el-table-column>
     </el-table>
@@ -120,7 +89,6 @@
 </template>
 
 <script>
-import { emailTemList } from '@/api/emailsend'
 import waves from '@/directive/waves' // 导入vue指令
 import Tinymce from '@/components/Tinymce'
 
@@ -145,12 +113,7 @@ export default {
   methods: {
     // 获取发件人的清单
     getList() {
-      emailTemList().then(response => {
-        this.list = response.data
-        this.content = this.list[0].content
-        // Just to simulate the time of the request
-        this.listLoading = false
-      })
+
     },
     handleUpdate(row) {
       this.$message(row.des)

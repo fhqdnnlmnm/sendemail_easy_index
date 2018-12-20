@@ -1,7 +1,5 @@
 import request from '@/utils/request'
-
-const baseUrl = '/v1/categories'
-
+const baseUrl = '/v1/customers'
 export default{
   index: function(query) {
     return request({
@@ -31,24 +29,16 @@ export default{
       params: query
     })
   },
-  destroy: function(query) {
+  destory: function(id) {
     return request({
-      url: baseUrl + '/' + query.id,
+      url: baseUrl + '/' + id,
       method: 'delete'
     })
   },
-  getParentList: function() {
+  getCountries: function() {
     return request({
-      url: baseUrl + '/getParentList',
-      method: 'get',
-      params: null
-    })
-  },
-  getTreeList: function() {
-    return request({
-      url: baseUrl + '/getTreeList',
-      method: 'get',
-      params: null
+      url: baseUrl + '/getCountries',
+      method: 'get'
     })
   }
 }
