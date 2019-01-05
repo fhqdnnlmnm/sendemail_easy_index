@@ -6,6 +6,7 @@ import getters from './getters'
 import category from './modules/category'
 import customer from './modules/customer'
 import emailSender from './modules/emailSender'
+import emailTemplate from './modules/emailTemplate'
 
 Vue.use(Vuex)
 
@@ -15,7 +16,8 @@ const store = new Vuex.Store({
     user,
     category,
     customer,
-    emailSender
+    emailSender,
+    emailTemplate
   },
   getters
 })

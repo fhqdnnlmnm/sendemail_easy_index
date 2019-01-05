@@ -208,5 +208,15 @@ export default {
     add: '添加',
     actions: '操作',
     edit: '编辑'
+  },
+  emailtemplate: {
+    id: 'ID',
+    name: '模板名称',
+    description: '描述',
+    subject: '主题',
+    content: '邮件内容',
+    add: '添加',
+    delete: '删除',
+    edit: '编辑'
   }
 }
